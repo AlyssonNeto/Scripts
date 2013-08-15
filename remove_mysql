@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo "****************************************************************"
+echo "WARNING: YOU ARE ABOUT TO REMOVE MYSQL AND ITS DATA PERMANENTLY!"
+echo "****************************************************************"
+echo Are you sure? [n]/y
+read value
+
+if [ $value == "y" ]; then
+    echo Removing MySql....
+    sudo rm /usr/local/mysql
+    sudo rm -rf /usr/local/mysql*
+    sudo rm -rf /Library/StartupItems/MySQLCOM
+    sudo rm -rf /Library/PreferencePanes/My*
+    cp /etc/hostconfig /etc/hostconfig.bak
+    rm -rf ~/Library/PreferencePanes/My*
+    sudo rm -rf /Library/Receipts/mysql*
+    sudo rm -rf /Library/Receipts/MySQL*
+    sudo rm -rf /var/db/receipts/com.mysql.*
+else
+    echo "Aborting removal of MySql."
+fi
+
+
